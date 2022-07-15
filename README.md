@@ -8,6 +8,7 @@ Obrigado por utilizar. :)
 
 ## Download 
 Você pode encontrar a última versão fazendo download do diretório ou em releases.
+
 Deve ter bastante bugs, não sou o melhor com essas coisas, para assistir vídeos free favor manter o forçar MP4 marcado.
 
 <br /><br /><br />

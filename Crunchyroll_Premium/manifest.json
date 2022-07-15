@@ -1,44 +1,31 @@
 {
-  "name": "Crunchyroll iFrame Player",
-  "version": "1.2.0",
-  "description": "Permite ver todos os vídeos do crunchyroll gratuitamente.",
-  "author": "itallolegal",
-  "icons": {
-    "48": "icon.png"
-  },
-  "action": {
-    "default_title": "Crunchyroll iFrame Player",
-    "default_popup": "popup.html",
-    "default_icon": "icon.png"
-  },
-  "permissions": [
-    "storage",
-    "declarativeNetRequest",
-    "declarativeNetRequestFeedback"
-  ],
-  "host_permissions": [
-    "https://pl.crunchyroll.com/*",
-    "https://www.crunchyroll.com/*",
-    "https://*.mateus7g.github.io/*",
-    "https://*.v.vrv.co/*",
-    "http://localhost/*"
-  ],
-  "declarative_net_request": {
-    "rule_resources": [
-      {
-        "id": "crpcors",
-        "enabled": true,
-        "path": "cors.json"
-      }
-    ]
-  },
-  "content_scripts": [
-    {
-      "matches": [ "https://*.crunchyroll.com/*" ],
-      "css": [ "content.css" ],
-      "js": [ "content.js" ],
-      "run_at": "document_start"
-    }
-  ],
-  "manifest_version": 3
+    "name": "Crunchyroll iFrame Player",
+    "version": "1.1.0",
+    "description": "Permite ver todos os vídeos do crunchyroll gratuitamente.",
+    "author": "itallolegal",
+    "icons": {
+        "48": "icon.png"
+    },
+    "browser_action": {
+        "default_title": "Crunchyroll iFrame Player",
+        "default_popup": "popup.html",
+        "default_icon": "icon.png"
+    },
+	"browser_specific_settings": {
+        "gecko": {
+			"id": "test@test.com"
+		}
+    },
+    "permissions": ["webRequest", "webRequestBlocking", "http://localhost/*", "https://pl.crunchyroll.com/*", "https://www.crunchyroll.com/*", "https://*.mateus7g.github.io/*", "storage"],
+    "content_scripts": [{
+            "matches": ["https://*.crunchyroll.com/*"],
+            "css": ["content.css"],
+            "js": ["content.js"],
+            "run_at": "document_start"
+        }
+    ],
+    "background": {
+        "scripts": ["background.js"]
+    },
+    "manifest_version": 2
 }

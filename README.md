@@ -1,7 +1,7 @@
 # Crunchyroll iFrame Player [![Built with love](https://img.shields.io/badge/made%20with-javascript-yellow?style=for-the-badge)](https://github.com/mateus7g/crp-iframe-player/releases/latest) [![Downloads](https://img.shields.io/github/downloads/mateus7g/crp-iframe-player/total.svg?style=for-the-badge)](https://github.com/mateus7g/crp-iframe-player/releases/latest)
 
 Essa é uma extensão da comunidade que permite assistir todo conteúdo da Crunchyroll.  
-Originalmente criada por [itallolegal](https://github.com/itallolegal) (desativado) e [Hyper1025](https://github.com/Hyper1025), atualmente mantida por [Mateus7G](https://github.com/Mateus7G), versão firefox por [Rgern100](https://github.com/Rgern100)
+Originalmente criada por [itallolegal](https://github.com/itallolegal) (desativado) e [Hyper1025](https://github.com/Hyper1025), atualmente mantida por [Mateus7G](https://github.com/Mateus7G).
 Um agradecimento especial a todos os colaboradores.
 
 Obrigado por utilizar. :)

@@ -15,15 +15,39 @@
       </div>
       <h2>Crunchyroll<br><span>iFrame Player</span></h2>
       <p>Projeto open-source, sinta-se livre para consultar o código fonte.</p>
-      <input type="checkbox" id="forcemp4" name="forcemp4">
-      <label for="forcemp4"><strong>Forçar MP4</strong> (chromecast) </label>
+      <div class="settings">
+        <input type="checkbox" id="forcemp4" name="forcemp4">
+        <label for="forcemp4"><strong>Forçar MP4</strong> (chromecast) </label>
+        <br />
+        <input type="checkbox" id="webvideocaster" name="webvideocaster" checked>
+        <label for="webvideocaster"><strong>Exibir botão de casting</strong> (WebVideoCaster) </label>
+        <br />
+        <input type="checkbox" id="aseguir" name="aseguir" checked>
+        <label for="aseguir"><strong>A seguir</strong> automático </label>
+      </div>
       <br />
-      <input type="checkbox" id="aseguir" name="aseguir" checked>
-      <label for="aseguir"><strong>A seguir</strong> automático </label>
-      <br /><br />
+																 
+																		 
+				  
       Exibir faltando <input type="number" id="cooldown" style="width: 50px;" min="0" value="5"> segundos.
-      <h3><a href="https://github.com/itallolegal" target="_blank">Itallolegal</a><br><span>Criador</span></h3>
-      <h3><a href="https://github.com/Hyper1025" target="_blank">Hyper1025</a><br><span>Contribuidor</span></h3>
+      <br /><br />
+      Baixe o WebVideoCaster <a href="https://www.webvideocaster.com/home" target="_blank">aqui</a>.
+      <table style="width: 100%">
+        <tr>
+          <td>
+            <h3><abbr title="(desativado)"><a href="https://github.com/itallolegal"
+                  target="_blank">Itallolegal</a></abbr>
+              <br><span>Criador</span>
+            </h3>
+          </td>
+          <td>
+            <h3><a href="https://github.com/Hyper-Tx" target="_blank">Hyper-Tx</a><br><span>Contribuidor</span></h3>
+          </td>
+          <td>
+            <h3><a href="https://github.com/Mateus7G" target="_blank">Mateus7G</a><br><span>Mantedor</span></h3>
+          </td>
+        </tr>
+      </table>
       <span>
         <ul>
           <li><a href="https://github.com/mateus7g/crp-iframe-player" target="_blank"><i class="fa fa-github"
@@ -81,6 +105,10 @@
     width: 100%;
   }
 
+  .card .box .settings {
+    text-align: left;
+  }
+
   .card .box .img {
     width: 100px;
     height: 100px;
@@ -101,10 +129,15 @@
   }
 
   .card .box a {
+    color: #f47521;
+  }
+
+  .card .box table a {
     font-size: 14px;
-    color: #262626;
+				   
     margin: 20px auto;
     text-decoration: none;
+    color: #262626;
   }
 
   .card .box h3 span {

@@ -72,7 +72,7 @@ function importPlayer() {
 
 //renderiza player na versão beta
 function importBetaPlayer(ready = false) {
-  var videoPlayer = query('.video-player');
+  var videoPlayer = query('.video-player') || query('#frame');
   if (!ready) {
     setTimeout(() => importBetaPlayer(!!videoPlayer), 100);
     return;
@@ -92,7 +92,7 @@ function importBetaPlayer(ready = false) {
   var series_slug = ep.episode_metadata.series_slug_title
   var external_id = ep.external_id.substr(4)
   var old_url = `https://www.crunchyroll.com/${external_lang}/${series_slug}/episode-${external_id}`
-  var up_next = document.querySelector('a.up-next-title')
+  var up_next = document.querySelector('[data-t="next-episode"] > a')
   var playback = ep.playback
 
   var message = {
@@ -121,12 +121,13 @@ function addPlayer(element, playerInfo, beta = false) {
 
   element.appendChild(ifrm)
 
-  chrome.storage.sync.get(['forcemp4', 'aseguir', 'cooldown'], function (items) {
+  chrome.storage.sync.get(['forcemp4', 'aseguir', 'cooldown', 'webvideocaster'], function (items) {
     ifrm.onload = function () {
+      playerInfo['webvideocaster'] = items.webvideocaster === undefined ? false : items.webvideocaster;
       playerInfo['up_next_cooldown'] = items.cooldown === undefined ? 5 : items.cooldown;
       playerInfo['up_next_enable'] = items.aseguir === undefined ? true : items.aseguir;
       playerInfo['force_mp4'] = items.forcemp4 === undefined ? false : items.forcemp4;
-      playerInfo['version'] = '1.2.0';
+      playerInfo['version'] = '1.2.1';
       playerInfo['noproxy'] = true;
       playerInfo['beta'] = beta;
       ifrm.contentWindow.postMessage(playerInfo, "*");
@@ -148,16 +149,21 @@ function onloadfunction() {
 }
 
 // function pra atualizar pagina quando mudar de episodio pela UI beta
-var isLoaded = false
+var currentURL = window.location.href;
 
 function registerChangeEpisode() {
-  const epChanged = setInterval(() => {
-    const videosWrapper = query('.videos-wrapper')
-    if (isLoaded && !videosWrapper) {
-      window.location.reload();
-      clearInterval(epChanged);
+  setInterval(async () => {
+    if (currentURL !== window.location.href) {
+									 
+      currentURL = window.location.href
+      if (currentURL.includes("/watch/")) {
+        const HTML = await fetch(currentURL)
+        console.log("[CR Beta] Searching for new INITIAL_STATE")
+        preservedState = JSON.parse(pegaString(HTML, "__INITIAL_STATE__ = ", ";"))
+        importBetaPlayer(false)
+      }
     }
-    isLoaded = !!videosWrapper
+							  
   }, 50)
 }
 
@@ -165,11 +171,11 @@ document.addEventListener("DOMContentLoaded", onloadfunction, false);
 document.onreadystatechange = function () {
   if (document.readyState === "interactive") {
     console.log("[CR Beta] Searching for INITIAL_STATE")
-    var HTML = document.documentElement.innerHTML
+    const HTML = document.documentElement.innerHTML
     preservedState = JSON.parse(pegaString(HTML, "__INITIAL_STATE__ = ", ";"))
   }
 
-  var crBetaStyle = document.createElement('style');
+  const crBetaStyle = document.createElement('style');
   crBetaStyle.innerHTML = `.video-player-wrapper {
     margin-top: 2rem;
     margin-bottom: calc(-3vh - 7vw);
@@ -177,4 +183,18 @@ document.onreadystatechange = function () {
     max-height: 82vh !important;
   }`;
   document.head.appendChild(crBetaStyle);
+}
+
+function fetch(url) {
+  return new Promise(async (resolve, reject) => {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.withCredentials = true;
+    xhr.onreadystatechange = () => {
+      if (xhr.readyState == 4)
+        if (xhr.status == 200) resolve(xhr.responseText)
+        else reject(xhr.statusText)
+    }
+    xhr.send();
+  })
 }

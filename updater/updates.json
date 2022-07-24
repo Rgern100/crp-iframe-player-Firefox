@@ -1,0 +1,17 @@
+{
+  "addons": {
+    "{crunchy-iframer}": {
+      "updates": [
+        {
+          "version": "1.1.0-1.2.0",
+          "update_link": "https://github.com/Rgern100/crp-iframe-player-Firefox/releases/download/1.1.0-1.2.0/crunchyroll.crp.iframe.1.1.0.-.1.2.0.xpi"
+        },
+        {
+          "version": "1.2.1",
+          "update_link": "https://github.com/Rgern100/crp-iframe-player-Firefox/releases/download/1.2.1/crunchyroll.crp.iframe-1.2.1.xpi",
+        },
+        }
+      ]
+    }
+  }
+}

@@ -38,7 +38,6 @@
     border-radius: 3px;
     margin: auto;
     padding: 20px;
-    -webkit-filter: url(#blur);
     -webkit-transform: translate3d(0, -900%, 0);
     transform: translate3d(0, -900%, 0);
 }

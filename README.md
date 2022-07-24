@@ -7,7 +7,7 @@ Um agradecimento especial a todos os colaboradores.
 Obrigado por utilizar. :)
 
 ## Download 
-Você pode encontrar a última versão fazendo download do diretório ou em releases.
+Você pode encontrar a última versão fazendo download do diretório ou em [releases.](https://github.com/Rgern100/crp-iframe-player-Firefox/releases/latest)
 
 Deve ter bastante bugs, não sou o melhor com essas coisas, mas em testes está funcionando maior parte.
 

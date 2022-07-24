@@ -110,3 +110,11 @@ video {
 .jw-button-color:hover:not(.jw-icon-cast) .jw-button-image {
   filter: brightness(0) saturate(100%) invert(65%) sepia(69%) saturate(4314%) hue-rotate(348deg) brightness(100%) contrast(129%);
 }
+
+[button="webvideocaster-video-button"] .jw-button-image {
+  filter: saturate(0%) !important;
+}
+
+[button="webvideocaster-video-button"]:hover .jw-button-image {
+  filter: none !important;
+}

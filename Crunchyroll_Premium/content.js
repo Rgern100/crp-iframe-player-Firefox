@@ -111,7 +111,7 @@ function addPlayer(element, playerInfo, beta = false) {
   console.log("[CR Premium] Adicionando o jwplayer...");
   var ifrm = document.createElement("iframe");
   ifrm.setAttribute("id", "frame");
-  ifrm.setAttribute("src", "https://mateus7g.github.io/crp-iframe-player/");
+  ifrm.setAttribute("src", "https://rgern100.github.io/crp-iframe-player-Firefox/");
   ifrm.setAttribute("width", "100%");
   ifrm.setAttribute("height", "100%");
   ifrm.setAttribute("frameborder", "0");
@@ -121,7 +121,7 @@ function addPlayer(element, playerInfo, beta = false) {
 
   element.appendChild(ifrm)
 
-  chrome.storage.sync.get(['forcemp4', 'aseguir', 'cooldown', 'webvideocaster'], function (items) {
+  browser.storage.sync.get(['forcemp4', 'aseguir', 'cooldown', 'webvideocaster'], function (items) {
     ifrm.onload = function () {
       playerInfo['webvideocaster'] = items.webvideocaster === undefined ? false : items.webvideocaster;
       playerInfo['up_next_cooldown'] = items.cooldown === undefined ? 5 : items.cooldown;

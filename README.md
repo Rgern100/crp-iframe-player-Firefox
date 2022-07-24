@@ -9,7 +9,8 @@ Obrigado por utilizar. :)
 ## Download 
 Você pode encontrar a última versão fazendo download do diretório ou em releases.
 
-Deve ter bastante bugs, não sou o melhor com essas coisas, para assistir vídeos que já são gratuítos favor manter o forçar MP4 marcado. Para os vídeos premiuns não é necessário.
+Deve ter bastante bugs, não sou o melhor com essas coisas, mas em testes está funcionando maior parte.
+
 
 <br /><br /><br />
 

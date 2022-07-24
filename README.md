@@ -10,6 +10,7 @@ Obrigado por utilizar. :)
 Você pode encontrar a última versão fazendo download do diretório ou em releases.
 
 Deve ter bastante bugs, não sou o melhor com essas coisas, mas em testes está funcionando maior parte.
+
 WebVideoCasting provavelmente não vai funcionar
 
 

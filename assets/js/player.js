@@ -205,7 +205,7 @@ window.addEventListener("message", async e => {
       playerInstance.addButton(...webvideocasterBtn);
     else
       playerInstance.addButton(...downloadBtn);
-    if (!tampermonkey && version !== "1.2.1-fix")
+    if (!tampermonkey && version !== "1.2.1")
       playerInstance.addButton(...updateBtn);
 
     // Definir URL e Tamanho na lista de download

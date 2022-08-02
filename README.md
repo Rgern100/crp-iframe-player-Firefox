@@ -11,7 +11,7 @@ Você pode encontrar a última versão fazendo download do diretório ou em [rel
 
 Deve ter bastante bugs, não sou o melhor com essas coisas, mas em testes está funcionando maior parte.
 
-WebVideoCasting provavelmente não vai funcionar
+Fique a vontade para melhorar o código.
 
 
 <br /><br /><br />

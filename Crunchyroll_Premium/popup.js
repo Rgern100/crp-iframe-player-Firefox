@@ -1,4 +1,4 @@
-const globalDefault = { 'webvideocaster': false, 'cooldown': false, 'aseguir': true, 'forcemp4': 5 }
+const globalDefault = { 'webvideocaster': false, 'cooldown': 5, 'aseguir': true, 'forcemp4': false }
 const globalVariables = Object.keys(globalDefault)
 
 chrome.storage.sync.get(globalVariables, function (items) {

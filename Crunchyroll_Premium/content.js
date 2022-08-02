@@ -77,11 +77,17 @@ function importBetaPlayer(ready = false) {
     setTimeout(() => importBetaPlayer(!!videoPlayer), 100);
     return;
   }
+  
+    var lastWatchedPlayer = query('#frame');
+  if (query('.video-player') && lastWatchedPlayer)
+    lastWatchedPlayer.parentNode.removeChild(lastWatchedPlayer);
 
   console.log("[CR Beta] Removendo player da Crunchyroll...");
-  remove('.video-player-placeholder', 'Video Placeholder')
+  remove('.video-player-placeholder', 'Video Placeholder');
+  remove('.video-player', 'Video Player', true);
+  remove('.blocked-stream-overlay', 'Blocked Overlay', true);
+  videoPlayer.src = '';
   const appendTo = videoPlayer.parentNode;
-  appendTo.removeChild(videoPlayer);
 
   console.log("[CR Beta] Pegando dados da stream...");
   var external_lang = preservedState.localization.locale.toLowerCase()
@@ -94,12 +100,14 @@ function importBetaPlayer(ready = false) {
   var old_url = `https://www.crunchyroll.com/${external_lang}/${series_slug}/episode-${external_id}`
   var up_next = document.querySelector('[data-t="next-episode"] > a')
   var playback = ep.playback
+  var series = document.querySelector('.show-title-link > h4')?.innerText;
 
   var message = {
     'playback': playback,
     'old_url': old_url,
     'lang': ep_lang,
     'up_next': up_next ? up_next.href : undefined,
+	'series': series ? series : undefined,
   }
 
   console.log("[CR Beta] Adicionando o jwplayer...");
@@ -127,7 +135,7 @@ function addPlayer(element, playerInfo, beta = false) {
       playerInfo['up_next_cooldown'] = items.cooldown === undefined ? 5 : items.cooldown;
       playerInfo['up_next_enable'] = items.aseguir === undefined ? true : items.aseguir;
       playerInfo['force_mp4'] = items.forcemp4 === undefined ? false : items.forcemp4;
-      playerInfo['version'] = '1.2.1';
+      playerInfo['version'] = '1.2.2';
       playerInfo['noproxy'] = true;
       playerInfo['beta'] = beta;
       ifrm.contentWindow.postMessage(playerInfo, "*");
@@ -157,6 +165,7 @@ function registerChangeEpisode() {
 									 
       currentURL = window.location.href
       if (currentURL.includes("/watch/")) {
+		remove(".erc-watch-premium-upsell", "New Premium Sidebar", true)
         const HTML = await fetch(currentURL)
         console.log("[CR Beta] Searching for new INITIAL_STATE")
         preservedState = JSON.parse(pegaString(HTML, "__INITIAL_STATE__ = ", ";"))
@@ -198,3 +207,8 @@ function fetch(url) {
     xhr.send();
   })
 }
+
+var s = document.createElement('script');
+s.src = browser.runtime.getURL('blockevidon.js');
+s.onload = function () { this.remove(); };
+(document.head || document.documentElement).appendChild(s);

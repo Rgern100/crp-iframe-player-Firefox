@@ -82,6 +82,9 @@ function importBetaPlayer(ready = false) {
   if (query('.video-player') && lastWatchedPlayer)
     lastWatchedPlayer.parentNode.removeChild(lastWatchedPlayer);
 
+  var titleLink = query('.show-title-link')
+  if (titleLink) titleLink.style.zIndex = "2";
+
   console.log("[CR Beta] Removendo player da Crunchyroll...");
   remove('.video-player-placeholder', 'Video Placeholder');
   remove('.video-player', 'Video Player', true);
@@ -93,10 +96,10 @@ function importBetaPlayer(ready = false) {
   var external_lang = preservedState.localization.locale.toLowerCase()
   var ep_lang = preservedState.localization.locale.replace('-', '')
   var ep_id = preservedState.watch.id
-  var ep = preservedState.content.byId[ep_id]
+  var ep = preservedState.content.media.byId[ep_id]
   if (!ep) { window.location.reload(); return; }
-  var series_slug = ep.episode_metadata.series_slug_title
-  var external_id = ep.external_id.substr(4)
+  var series_slug = ep.parentSlug
+  var external_id = getExternalId(ep.id).substr(4)
   var old_url = `https://www.crunchyroll.com/${external_lang}/${series_slug}/episode-${external_id}`
   var up_next = document.querySelector('[data-t="next-episode"] > a')
   var playback = ep.playback
@@ -135,7 +138,7 @@ function addPlayer(element, playerInfo, beta = false) {
       playerInfo['up_next_cooldown'] = items.cooldown === undefined ? 5 : items.cooldown;
       playerInfo['up_next_enable'] = items.aseguir === undefined ? true : items.aseguir;
       playerInfo['force_mp4'] = items.forcemp4 === undefined ? false : items.forcemp4;
-      playerInfo['version'] = '1.2.2';
+      playerInfo['version'] = '1.3.0a';
       playerInfo['noproxy'] = true;
       playerInfo['beta'] = beta;
       ifrm.contentWindow.postMessage(playerInfo, "*");
@@ -208,7 +211,11 @@ function fetch(url) {
   })
 }
 
+function getExternalId(id) {
+  return JSON.parse(localStorage.getItem('externalIds'))[id];
+}
+
 var s = document.createElement('script');
-s.src = browser.runtime.getURL('blockevidon.js');
+s.src = browser.runtime.getURL('interceptor.js');
 s.onload = function () { this.remove(); };
 (document.head || document.documentElement).appendChild(s);

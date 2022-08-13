@@ -1,6 +1,6 @@
 {
     "name": "Crunchyroll iFrame Player",
-    "version": "1.2.2",
+    "version": "1.3.0a",
     "description": "Permite ver todos os vídeos do crunchyroll gratuitamente.",
     "author": "itallolegal",
     "icons": {
@@ -16,9 +16,9 @@
 			"id": "asdhawuodhcauowchauohwoaduji9hfjdaopi@gmail.com"
 		}
     },
-    "permissions": ["webRequest", "webRequestBlocking", "storage", "*://pl.crunchyroll.com/*", "*://localhost/*", "*://www.crunchyroll.com/*", "*://rgern100.github.io/*", "*://*.vrv.co/*"],
+    "permissions": ["webRequest", "webRequestBlocking", "storage", "*://*.crunchyroll.com/*", "*://localhost/*", "*://rgern100.github.io/*", "*://*.vrv.co/*"],
     "content_scripts": [{
-            "matches": ["https://*.crunchyroll.com/*"],
+            "matches": ["*://*.crunchyroll.com/*"],
             "css": ["content.css"],
             "js": ["content.js"],
             "run_at": "document_start"
@@ -28,7 +28,7 @@
         "scripts": ["background.js"]
     },
 	"web_accessible_resources": [
-    "blockevidon.js"
+    "interceptor.js"
   ],
     "manifest_version": 2
 }
